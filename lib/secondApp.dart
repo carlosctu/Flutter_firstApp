@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/core/app_assets.dart';
 
 void main() {
   runApp(
@@ -17,8 +18,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("App Treino"),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 15),
+          child: Text("App Treino"),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () => {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const NextPage()))
+            },
+            icon: const Icon(
+              Icons.keyboard_arrow_right,
+              size: 40,
+            ),
+            padding: const EdgeInsets.only(right: 25),
+          )
+        ],
       ),
+      // Permite dar o scroll no app
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -31,7 +49,7 @@ class HomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                         image: const DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage('../img/mountain.jpg'),
+                          image: AssetImage('../assets/images/mountain.jpg'),
                           // opacity: 15.0,
                         ),
                         // color: Colors.white,
@@ -241,7 +259,7 @@ class HomePage extends StatelessWidget {
                     child: Text(
                       'Living Room',
                       style: TextStyle(
-                          fontFamily: 'Roboto',
+                          fontFamily: 'Montserrat',
                           fontSize: 18,
                           fontWeight: FontWeight.bold),
                     ),
@@ -759,6 +777,33 @@ class HomePage extends StatelessWidget {
             ]),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class NextPage extends StatelessWidget {
+  const NextPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        leading: IconButton(
+          icon: const Icon(Icons.keyboard_arrow_left, size: 40),
+          onPressed: () => Navigator.pop(context),
+        ),
+      ),
+      body: Column(
+        children: [
+          Image.asset(react),
+          const Text(
+            'Página 02',
+            style: TextStyle(fontFamily: 'Schuyler'),
+          )
+        ],
       ),
     );
   }
